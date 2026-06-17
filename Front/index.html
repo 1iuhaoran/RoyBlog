@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>徐若愚语录</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="ambient ambient-left"></div>
+  <div class="ambient ambient-right"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">徐</span>
+      <div>
+        <p class="brand-kicker">Blog</p>
+        <h1>徐若愚语录</h1>
+      </div>
+    </div>
+    <button class="icon-button" id="themeToggle" type="button" aria-label="切换主题">
+      <span class="icon">◐</span>
+    </button>
+  </header>
+
+  <main class="layout">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">语录 · 随笔 · 观察</p>
+        <h2>把一句话写清楚，比把很多话写满更难。</h2>
+        <p class="lead">
+          这是一个围绕“徐若愚语录”打造的静态博客页，整体做成偏克制的深色阅读风格，
+          适合放短句、摘录和个人记录。
+        </p>
+        <div class="hero-actions">
+          <button class="primary-button" id="shuffleQuote" type="button">换一句</button>
+          <button class="ghost-button" id="copyQuote" type="button">复制当前语录</button>
+        </div>
+      </div>
+
+      <aside class="quote-panel" aria-live="polite">
+        <p class="quote-label">今日语录</p>
+        <blockquote id="featuredQuote">“真正重要的，不是你说了多少，而是你留下了什么。”</blockquote>
+        <p class="quote-meta" id="quoteMeta">徐若愚 · 语录第 01 条</p>
+      </aside>
+    </section>
+
+    <section class="content-grid">
+      <div class="feed">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">语录列表</p>
+            <h3>可读、可筛选、可继续扩展</h3>
+          </div>
+          <label class="search">
+            <span>搜索</span>
+            <input id="searchInput" type="search" placeholder="输入关键词，如：成长、时间、选择" />
+          </label>
+        </div>
+
+        <div class="chips" id="tagChips">
+          <button class="chip active" data-tag="all" type="button">全部</button>
+          <button class="chip" data-tag="成长" type="button">成长</button>
+          <button class="chip" data-tag="时间" type="button">时间</button>
+          <button class="chip" data-tag="选择" type="button">选择</button>
+          <button class="chip" data-tag="自省" type="button">自省</button>
+        </div>
+
+        <div class="posts" id="posts"></div>
+      </div>
+
+      <aside class="sidebar">
+        <section class="side-card profile">
+          <p class="section-kicker">简介</p>
+          <h3>徐若愚</h3>
+          <p>
+            一个以语气、分寸和观察为核心的语录站点。页面保留了博客的阅读感，
+            也留出了以后加文章、分类和时间轴的空间。
+          </p>
+        </section>
+
+        <section class="side-card stats">
+          <p class="section-kicker">数据</p>
+          <div class="stat-row">
+            <span>语录条数</span>
+            <strong id="quoteCount">0</strong>
+          </div>
+          <div class="stat-row">
+            <span>当前标签</span>
+            <strong id="activeTag">全部</strong>
+          </div>
+          <div class="stat-row">
+            <span>阅读状态</span>
+            <strong>沉浸式</strong>
+          </div>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <template id="postTemplate">
+    <article class="post">
+      <div class="post-top">
+        <span class="post-tag"></span>
+        <time class="post-time"></time>
+      </div>
+      <h4 class="post-title"></h4>
+      <p class="post-body"></p>
+    </article>
+  </template>
+
+  <script src="./script.js"></script>
+</body>
+</html>
