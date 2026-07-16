@@ -1,0 +1,7 @@
+.brand { color: var(--text); text-decoration: none; }
+.brand > span:last-child { display: grid; gap: 2px; }
+.brand strong { font-family: "Times New Roman", "Songti SC", "STSong", serif; font-size: 1.2rem; }
+.brand-kicker { display: block; margin: 0; }
+.hero-copy h1 { margin: 0; font-family: "Times New Roman", "Songti SC", "STSong", serif; font-size: clamp(2rem, 4vw, 3.8rem); line-height: 1.08; max-width: 12ch; }
+.section-head h2, .side-card h2 { margin: 0; font-family: "Times New Roman", "Songti SC", "STSong", serif; font-size: 1.4rem; }
+.post-title { font-size: 1.08rem; }
