@@ -1,0 +1,48 @@
+:root { --ink: #242018; --vermillion: #9d241d; --paper: #fbf4e4; --paper-deep: #eadbbd; }
+body { background: var(--paper-deep); color: var(--ink); }
+.bg-grid, .ambient { display: none; }
+.topbar, .layout { max-width: 1260px; }
+.topbar { margin-top: 24px; padding: 16px 28px; background: var(--paper); border: 1px solid #423a2d; border-bottom: 4px double var(--vermillion); }
+.brand { color: var(--vermillion); }
+.brand-mark { color: var(--vermillion); background: transparent; border: 2px solid var(--vermillion); border-radius: 50%; box-shadow: none; font-family: "KaiTi", "STKaiti", serif; }
+.icon-button, .primary-button, .ghost-button, .chip { background: transparent; color: var(--ink); border-color: #6e6352; border-radius: 2px; box-shadow: none; }
+.layout { margin-top: 0; padding: 30px; background: var(--paper); border: 1px solid #423a2d; border-top: 0; box-shadow: 0 18px 50px rgba(74, 51, 23, .18); }
+.hero, .content-grid { direction: rtl; gap: 22px; }
+.hero { grid-template-columns: 1.05fr .95fr; }
+.hero-copy, .quote-panel, .side-card, .post { background: transparent; border: 1px solid #6e6352; border-radius: 0; box-shadow: none; backdrop-filter: none; }
+.hero-copy, .quote-panel { min-height: 550px; padding: 30px; writing-mode: vertical-rl; text-orientation: mixed; }
+.hero-copy { border-top: 5px solid var(--vermillion); }
+.hero-copy h1 { color: var(--vermillion); font-family: "DFKai-SB", "KaiTi", serif; font-size: clamp(2.4rem, 5vw, 4.4rem); line-height: 1.05; }
+.eyebrow, .document-date, .lead, .quote-label, .quote-meta { color: #534b3d; }
+.document-date { margin: 0; font-size: .95rem; letter-spacing: .18em; }
+.lead { margin: 0; line-height: 2.15; max-width: none; }
+.hero-actions { margin-top: 0; flex-direction: column; }
+.primary-button { background: var(--vermillion); color: #fff8e9; border-color: var(--vermillion); }
+.quote-panel { justify-content: flex-start; gap: 22px; }
+.quote-panel blockquote { font-family: "KaiTi", "STKaiti", serif; font-size: clamp(1.5rem, 3vw, 2.5rem); line-height: 1.65; }
+.quote-meta { margin: 0; }
+.content-grid { grid-template-columns: 285px minmax(0, 1fr); }
+.section-head { align-items: stretch; margin-bottom: 12px; }
+.section-head > div { writing-mode: vertical-rl; text-orientation: mixed; }
+.section-head h2, .side-card h2 { color: var(--vermillion); font-family: "DFKai-SB", "KaiTi", serif; }
+.search { direction: ltr; writing-mode: horizontal-tb; align-self: end; }
+.search input { background: #fffaf0; color: var(--ink); border: 1px solid #6e6352; box-shadow: none; border-radius: 0; }
+.chips { direction: rtl; border-top: 1px solid #6e6352; border-bottom: 1px solid #6e6352; padding: 10px 0; }
+.chip.active { color: #fff8e9; background: var(--vermillion); border-color: var(--vermillion); }
+.posts { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.post { min-height: 315px; padding: 18px; writing-mode: vertical-rl; text-orientation: mixed; }
+.post-top { flex-direction: column; color: #645a49; }
+.post-tag { color: var(--vermillion); background: transparent; border: 1px solid currentColor; border-radius: 0; }
+.post-title { margin: 0; font-family: "KaiTi", "STKaiti", serif; line-height: 1.55; }
+.post-body { color: #4c4539; line-height: 1.95; }
+.sidebar { gap: 12px; }
+.side-card { min-height: 270px; padding: 22px; writing-mode: vertical-rl; text-orientation: mixed; }
+.side-card p { color: #4c4539; line-height: 1.95; }
+.stats .stat-row { border-color: #b6aa95; }
+body.light { --text: #f7efdb; --muted: #d4c6a9; background: #1f1b17; }
+body.light .topbar, body.light .layout { background: #29231d; border-color: #bda980; }
+body.light .hero-copy, body.light .quote-panel, body.light .side-card, body.light .post { border-color: #aa9a79; }
+body.light .hero-copy h1, body.light .section-head h2, body.light .side-card h2, body.light .brand, body.light .brand-mark { color: #e16456; }
+body.light .lead, body.light .document-date, body.light .quote-label, body.light .quote-meta, body.light .post-body, body.light .side-card p { color: #d4c6a9; }
+@media (max-width: 960px) { .posts { grid-template-columns: repeat(2, minmax(0, 1fr)); } .hero-copy, .quote-panel { min-height: 410px; } }
+@media (max-width: 640px) { .layout { padding: 16px; } .hero-copy, .quote-panel { min-height: 360px; padding: 20px; } .posts { grid-template-columns: 1fr; } .post { min-height: 250px; } .content-grid { grid-template-columns: 1fr; } .sidebar { grid-template-columns: repeat(2, minmax(0, 1fr)); } .side-card { min-height: 200px; padding: 16px; } }

@@ -1,61 +1,39 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="若愚语录：关于成长、时间、选择与自省的个人记录。" />
-  <meta name="theme-color" content="#0b1020" />
-  <title>若愚语录</title>
+  <meta name="description" content="若愚公牘：以中華民國公文風格書寫的語錄與隨筆。" />
+  <meta name="theme-color" content="#efe4cd" />
+  <title>若愚公牘</title>
   <link rel="stylesheet" href="./styles.css" />
   <link rel="stylesheet" href="./site.css" />
+  <link rel="stylesheet" href="./roc-document.css" />
 </head>
 <body>
-  <div class="bg-grid"></div>
-  <div class="ambient ambient-left"></div>
-  <div class="ambient ambient-right"></div>
+  <div class="bg-grid"></div><div class="ambient ambient-left"></div><div class="ambient ambient-right"></div>
   <header class="topbar">
-    <a class="brand" href="./" aria-label="若愚语录首页">
-      <span class="brand-mark" aria-hidden="true">愚</span>
-      <span><span class="brand-kicker">Blog</span><strong>若愚语录</strong></span>
-    </a>
-    <button class="icon-button" id="themeToggle" type="button" aria-label="切换浅色主题" title="切换主题">◐</button>
+    <a class="brand" href="./" aria-label="若愚公牘首頁"><span class="brand-mark" aria-hidden="true">若</span><span><span class="brand-kicker">中華民國一一五年</span><strong>若愚公牘</strong></span></a>
+    <button class="icon-button" id="themeToggle" type="button" aria-label="切換夜讀主題" title="切換夜讀主題">◐</button>
   </header>
   <main class="layout">
     <section class="hero" aria-labelledby="pageTitle">
       <div class="hero-copy">
-        <p class="eyebrow">语录 · 随笔 · 观察</p>
-        <h1 id="pageTitle">把一句话写清楚，比把很多话写满更难。</h1>
-        <p class="lead">这是一个记录思考的地方。留下一点关于成长、时间、选择和自省的片段，也给后来回望时，留一盏清楚的灯。</p>
-        <div class="hero-actions">
-          <button class="primary-button" id="shuffleQuote" type="button">换一句</button>
-          <button class="ghost-button" id="copyQuote" type="button">复制当前语录</button>
-        </div>
+        <p class="eyebrow">若愚字第 1150717 號</p>
+        <h1 id="pageTitle">若愚公牘</h1>
+        <p class="document-date">中華民國一一五年七月十七日</p>
+        <p class="lead">謹錄成長、時間、選擇與自省之片語。願字句有據，思索有度，日後回望時仍可辨其來處。</p>
+        <div class="hero-actions"><button class="primary-button" id="shuffleQuote" type="button">換一則</button><button class="ghost-button" id="copyQuote" type="button">抄錄本則</button></div>
       </div>
-      <aside class="quote-panel" aria-live="polite">
-        <p class="quote-label">今日语录</p>
-        <blockquote id="featuredQuote"></blockquote>
-        <p class="quote-meta" id="quoteMeta"></p>
-      </aside>
+      <aside class="quote-panel" aria-live="polite"><p class="quote-label">本日語錄</p><blockquote id="featuredQuote"></blockquote><p class="quote-meta" id="quoteMeta"></p></aside>
     </section>
-    <section class="content-grid" aria-label="语录列表">
+    <section class="content-grid" aria-label="語錄檔案">
       <div class="feed">
-        <div class="section-head">
-          <div><p class="section-kicker">语录列表</p><h2>可读、可筛选、持续更新</h2></div>
-          <label class="search" for="searchInput"><span>搜索</span><input id="searchInput" type="search" placeholder="输入关键词，如：成长、时间、选择" autocomplete="off" /></label>
-        </div>
-        <div class="chips" id="tagChips" aria-label="按标签筛选">
-          <button class="chip active" data-tag="all" type="button">全部</button>
-          <button class="chip" data-tag="成长" type="button">成长</button>
-          <button class="chip" data-tag="时间" type="button">时间</button>
-          <button class="chip" data-tag="选择" type="button">选择</button>
-          <button class="chip" data-tag="自省" type="button">自省</button>
-        </div>
+        <div class="section-head"><div><p class="section-kicker">附錄一</p><h2>語錄檔案</h2></div><label class="search" for="searchInput"><span>檢索</span><input id="searchInput" type="search" placeholder="輸入關鍵詞" autocomplete="off" /></label></div>
+        <div class="chips" id="tagChips" aria-label="依標籤篩選"><button class="chip active" data-tag="all" type="button">全部</button><button class="chip" data-tag="時事" type="button">時事</button><button class="chip" data-tag="成長" type="button">成長</button><button class="chip" data-tag="時間" type="button">時間</button><button class="chip" data-tag="選擇" type="button">選擇</button><button class="chip" data-tag="自省" type="button">自省</button></div>
         <div class="posts" id="posts"></div>
       </div>
-      <aside class="sidebar">
-        <section class="side-card profile"><p class="section-kicker">简介</p><h2>若愚</h2><p>一个以语气、分寸和观察为核心的记录站点。这里保留博客的阅读感，也为以后增加文章、分类和时间线留出空间。</p></section>
-        <section class="side-card stats" aria-label="站点数据"><p class="section-kicker">数据</p><div class="stat-row"><span>语录条数</span><strong id="quoteCount">0</strong></div><div class="stat-row"><span>当前标签</span><strong id="activeTag">全部</strong></div><div class="stat-row"><span>阅读状态</span><strong>沉浸中</strong></div></section>
-      </aside>
+      <aside class="sidebar"><section class="side-card profile"><p class="section-kicker">主旨</p><h2>存真</h2><p>以公牘之制，存一時之念；不求繁飾，但求可讀、可考、可自省。</p></section><section class="side-card stats" aria-label="檔案數據"><p class="section-kicker">統計</p><div class="stat-row"><span>條目</span><strong id="quoteCount">0</strong></div><div class="stat-row"><span>分類</span><strong id="activeTag">全部</strong></div><div class="stat-row"><span>狀態</span><strong>存檔中</strong></div></section></aside>
     </section>
   </main>
   <template id="postTemplate"><article class="post"><div class="post-top"><span class="post-tag"></span><time class="post-time"></time></div><h3 class="post-title"></h3><p class="post-body"></p></article></template>
