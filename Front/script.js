@@ -1,3 +1,70 @@
+const PASSWORD_HASH = "6232353df637933e9d1f86ebb2c71afecda1888fefcfeb954c08228da29d13bd";
+
+async function sha256(value) {
+  const data = new TextEncoder().encode(value);
+  const hash = await crypto.subtle.digest("SHA-256", data);
+  return [...new Uint8Array(hash)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
+function installAccessGate() {
+  if (sessionStorage.getItem("royblog-access") === "granted") return;
+
+  const style = document.createElement("style");
+  style.textContent = `
+    body.access-locked { overflow: hidden; }
+    body.access-locked > :not(.access-gate) { filter: blur(12px); pointer-events: none; user-select: none; }
+    .access-gate { position: fixed; inset: 0; z-index: 99; display: grid; place-items: center; padding: 20px; background: rgba(42, 32, 20, .34); backdrop-filter: blur(7px); }
+    .access-card { width: min(100%, 420px); padding: 34px; color: #29251f; background: #fbf6e9; border: 1px solid #b9aa90; border-top: 5px solid #9b3027; box-shadow: 0 24px 70px rgba(47, 31, 13, .28); }
+    .access-card__kicker { margin: 0 0 10px; color: #9b3027; font: 700 .78rem/1.3 system-ui, sans-serif; letter-spacing: .14em; }
+    .access-card h2 { margin: 0; font: 2rem/1.2 "DFKai-SB", "KaiTi", "STKaiti", serif; letter-spacing: .08em; }
+    .access-card__copy { margin: 18px 0 24px; color: #62594a; line-height: 1.8; }
+    .access-card label { display: grid; gap: 8px; color: #51493e; font-size: .9rem; }
+    .access-card input { width: 100%; padding: 12px; color: #29251f; background: #fffaf0; border: 1px solid #a99a7d; border-radius: 2px; outline: none; }
+    .access-card input:focus { border-color: #9b3027; box-shadow: 0 0 0 3px rgba(155,48,39,.12); }
+    .access-card button { width: 100%; margin-top: 16px; padding: 12px; color: #fff8e8; background: #9b3027; border: 1px solid #9b3027; border-radius: 2px; cursor: pointer; font-weight: 700; }
+    .access-card button:hover { background: #7e241e; }
+    .access-card__message { min-height: 1.5em; margin: 12px 0 0; color: #9b3027; font-size: .9rem; }
+  `;
+  document.head.append(style);
+
+  const gate = document.createElement("section");
+  gate.className = "access-gate";
+  gate.innerHTML = `
+    <div class="access-card" role="dialog" aria-modal="true" aria-labelledby="accessTitle">
+      <p class="access-card__kicker">若愚字第 1150717 號</p>
+      <h2 id="accessTitle">若愚公牘</h2>
+      <p class="access-card__copy">本站僅供受邀閱覽。請輸入通行口令後閱覽全文。</p>
+      <form id="accessForm">
+        <label>通行口令<input id="accessPassword" type="password" autocomplete="current-password" required autofocus /></label>
+        <button type="submit">入牘閱覽</button>
+        <p class="access-card__message" id="accessMessage" aria-live="polite"></p>
+      </form>
+    </div>`;
+  document.body.prepend(gate);
+  document.body.classList.add("access-locked");
+
+  const form = gate.querySelector("#accessForm");
+  const input = gate.querySelector("#accessPassword");
+  const message = gate.querySelector("#accessMessage");
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    message.textContent = "正在核驗…";
+    try {
+      if (await sha256(input.value) === PASSWORD_HASH) {
+        sessionStorage.setItem("royblog-access", "granted");
+        document.body.classList.remove("access-locked");
+        gate.remove();
+        input.value = "";
+      } else {
+        message.textContent = "口令不正確，請再試一次。";
+        input.select();
+      }
+    } catch {
+      message.textContent = "無法核驗口令，請使用現代瀏覽器。";
+    }
+  });
+}
+
 const quotes = [
   { tag: "時事", title: "狗別叛國", body: "狗別叛國。", time: "2026-07-17" },
   { tag: "成長", title: "把變化留給時間，把判斷留給自己", body: "成長不是突然變強，而是慢慢學會把情緒放下，把邊界立住，把真正重要的事放在前面。", time: "2026-06-11" },
@@ -75,3 +142,4 @@ themeToggle.addEventListener("click", () => setTheme(!document.body.classList.co
 setTheme(localStorage.getItem("ruoyu-theme") === "night");
 renderFeatured(state.index);
 renderPosts();
+installAccessGate();
